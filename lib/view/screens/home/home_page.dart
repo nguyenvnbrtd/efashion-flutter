@@ -55,7 +55,10 @@ class HomePage extends StatelessWidget {
             iconLeft: SearchBarIcon(onTap: () {}, src: menuIcon),
             iconRight: SearchBarIcon(onTap: () {}, src: notifyIcon),
           ),
-          FlashSaleTmpl(items: pdItems),
+          BlocProvider<IndicatorCubit>(
+            create: (_) => IndicatorCubit(),
+            child: FlashSaleTmpl(items: pdItems),
+          ),
           const SpaceVertical(),
           Container(
             padding: EdgeInsets.symmetric(horizontal: width * 0.05),

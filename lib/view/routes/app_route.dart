@@ -10,6 +10,7 @@ import '../screens/category/category_page.dart';
 import '../screens/category_items/category_item_screen.dart';
 import '../screens/home/home_page.dart';
 import '../screens/home/home_screen.dart';
+import '../screens/item_description/item_description_screen.dart';
 import '../screens/liked/liked_page.dart';
 
 //import your screens here
@@ -38,6 +39,10 @@ class AppRoute {
       case itemScreen:
         return MaterialPageRoute(
           builder: (_)=> Container(), //screen 2
+        );
+      case itemDescriptionScreen:
+        return MaterialPageRoute(
+          builder: (_)=> const ItemDescriptionScreen(), //screen 2
         );
       default:
         return null;

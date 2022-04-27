@@ -55,6 +55,7 @@ const String homeScreen = '/';
 const String cartScreen = '/cartScreen';
 const String itemScreen = '/itemScreen';
 const String categoryItemsScreen = '/categoryItemsScreen';
+const String itemDescriptionScreen = '/itemDescriptionScreen';
 
 //screen index
 const int homePageIndex = 0;

@@ -42,8 +42,8 @@ abstract class ScrollImageList<T> extends StatelessWidget {
   }
 
   /// sử lý sự kiện của item (action of item)
-  void setActionMarkerPin(OnItemTap action){
-    _onItemTap = action;
+  void setOnItemTap(OnItemTap action){
+    _onItemTap ??= action;
   }
 
   void scrollTo(int index) {
@@ -100,7 +100,11 @@ abstract class ScrollImageList<T> extends StatelessWidget {
         BlocBuilder<IndicatorCubit, int>(
           builder: (_, state) => GestureDetector(
             onTap: (){
-              if (_onItemTap != null) _onItemTap!(items[state]);
+              try{
+                if (_onItemTap != null) _onItemTap!(items[state]);
+              }catch(e){
+                print(e);
+              }
             },
             onHorizontalDragUpdate: onHorizontalDragUpdate,
             child: Container(
