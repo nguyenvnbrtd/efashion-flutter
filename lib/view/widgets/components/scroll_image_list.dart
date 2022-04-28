@@ -22,7 +22,7 @@ abstract class ScrollImageList<T> extends StatelessWidget {
   final double? width;
   final double? height;
   final Widget? child;
-  late OnItemTap<T>? _onItemTap;
+  OnItemTap<T>? _onItemTap;
 
   ScrollImageList({Key? key, required this.items, this.width, this.child, this.height}) : super(key: key);
 

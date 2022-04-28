@@ -10,7 +10,7 @@ class FlashSaleTmpl extends ScrollImageList<ProductItem>{
 
   @override
   Widget body(BuildContext context) {
-    setOnItemTap((item) => Navigator.pushNamed(context, itemDescriptionScreen));
+    setOnItemTap((item) => Navigator.pushNamed(context, itemDescriptionScreen, arguments: item));
     return super.body(context);
   }
 

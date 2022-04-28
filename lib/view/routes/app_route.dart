@@ -1,4 +1,5 @@
 import 'package:efashion/model/models/category_item.dart';
+import 'package:efashion/model/models/product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,7 +43,7 @@ class AppRoute {
         );
       case itemDescriptionScreen:
         return MaterialPageRoute(
-          builder: (_)=> const ItemDescriptionScreen(), //screen 2
+          builder: (_)=> ItemDescriptionScreen(item: routeSettings.arguments as ProductItem),
         );
       default:
         return null;
