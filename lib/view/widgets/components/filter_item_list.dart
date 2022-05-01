@@ -1,3 +1,5 @@
+import 'package:efashion/view/widgets/components/spacer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constant.dart';
@@ -6,9 +8,13 @@ import '../../../model/models/product_option.dart';
 class FilterSearchList<T> extends StatefulWidget {
   final ValueChanged<T> onSelectedChange;
   final List<T> items;
+  final String? label;
 
   const FilterSearchList(
-      {Key? key, required this.onSelectedChange(T), required this.items})
+      {Key? key,
+      required this.onSelectedChange(T),
+      required this.items,
+      this.label})
       : super(key: key);
 
   @override
@@ -22,27 +28,39 @@ class _FilterSearchList extends State<FilterSearchList> {
   Widget build(BuildContext context) {
     double width = windowWidth(context);
     double padding = width * 0.05;
-    return Container(
-      width: width,
-      height: 40,
-      // padding: EdgeInsets.symmetric(horizontal: width*0.05),
-      child: ListView.builder(
-          itemCount: widget.items.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return _FilterSearchListItem(
-              item: widget.items[index].name,
-              isSelected: currentIndex == index,
-              marginLeft: index == 0 ? padding : null,
-              marginRight: index + 1 == widget.items.length ? padding : null,
-              onTap: () {
-                widget.onSelectedChange(widget.items[index]);
-                setState(() {
-                  currentIndex = index;
-                });
-              },
-            );
-          }),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (widget.label != null) Container(
+          padding: EdgeInsets.symmetric(horizontal: width*0.05),
+          child: Text(widget.label!,
+              style: const TextStyle(
+                  color: Colors.grey, fontWeight: FontWeight.w500, fontSize: 14)),
+        ),
+        if (widget.label != null) const SpaceVertical(height: 5),
+        Container(
+          width: width,
+          height: 40,
+          // padding: EdgeInsets.symmetric(horizontal: width*0.05),
+          child: ListView.builder(
+              itemCount: widget.items.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return _FilterSearchListItem(
+                  item: widget.items[index].name,
+                  isSelected: currentIndex == index,
+                  marginLeft: index == 0 ? padding : null,
+                  marginRight: index + 1 == widget.items.length ? padding : null,
+                  onTap: () {
+                    widget.onSelectedChange(widget.items[index]);
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
+                );
+              }),
+        )
+      ]
     );
   }
 }
@@ -53,6 +71,7 @@ class _FilterSearchListItem extends StatelessWidget {
   final VoidCallback onTap;
   final double? marginLeft;
   final double? marginRight;
+  final String? label;
 
   const _FilterSearchListItem(
       {Key? key,
@@ -60,7 +79,8 @@ class _FilterSearchListItem extends StatelessWidget {
       this.isSelected = false,
       required this.onTap,
       this.marginLeft,
-      this.marginRight})
+      this.marginRight,
+      this.label})
       : super(key: key);
 
   @override
@@ -69,18 +89,18 @@ class _FilterSearchListItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-        margin: EdgeInsets.only(left: marginLeft ?? 5, right: marginRight ?? 5, top: 6, bottom: 6),
+        margin: EdgeInsets.only(
+            left: marginLeft ?? 5, right: marginRight ?? 5, top: 6, bottom: 6),
         decoration: BoxDecoration(
-          color: isSelected ? primaryColor : Colors.white,
-          borderRadius: BorderRadius.circular(25),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black45.withOpacity(0.3),
-              offset: const Offset(1, 2),
-              blurRadius: 2,
-              spreadRadius: 2)
-          ]
-        ),
+            color: isSelected ? primaryColor : Colors.white,
+            borderRadius: BorderRadius.circular(25),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black45.withOpacity(0.3),
+                  offset: const Offset(1, 2),
+                  blurRadius: 2,
+                  spreadRadius: 2)
+            ]),
         child: Center(
           child: Text(
             item,

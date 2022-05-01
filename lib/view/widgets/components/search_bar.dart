@@ -83,50 +83,49 @@ class SearchBar extends StatelessWidget {
             ],
           ),
           Positioned(
-              bottom: windowSize.height * 0.025,
-              left: windowSize.width * 0.05,
-              right: windowSize.width * 0.05,
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: primaryColor.withOpacity(0.3),
-                        blurRadius: 2.0, // soften the shadow
-                        spreadRadius: 1.0,
-                        //blurStyle: BlurStyle.outer,//extend the shadow
-                        offset: const Offset(
-                          1.0, // Move to right 10  horizontally
-                          1.0, // Move to bottom 10 Vertically
+            bottom: windowSize.height * 0.025,
+            left: windowSize.width * 0.05,
+            right: windowSize.width * 0.05,
+            child: GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return const SearchPage();
+                      });
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: const BorderRadius.all(Radius.circular(50)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: primaryColor.withOpacity(0.3),
+                          blurRadius: 2.0, // soften the shadow
+                          spreadRadius: 1.0,
+                          //blurStyle: BlurStyle.outer,//extend the shadow
+                          offset: const Offset(
+                            1.0, // Move to right 10  horizontally
+                            1.0, // Move to bottom 10 Vertically
+                          ),
+                        )
+                      ]),
+                  clipBehavior: Clip.hardEdge,
+                  // height: 50,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 25,
+                        height: windowSize.height * 0.05,
+                        child: ButtonImageIcon(
+                          onTab: () {},
+                          src: searchIcon,
+                          iconColor: Colors.grey,
                         ),
-                      )
-                    ]),
-                clipBehavior: Clip.hardEdge,
-                // height: 50,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 25,
-                      height: windowSize.height * 0.05,
-                      child: ButtonImageIcon(
-                        onTab: () {},
-                        src: searchIcon,
-                        iconColor: Colors.grey,
                       ),
-                    ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return const SearchPage();
-                            }
-                          );
-                        },
+                      Expanded(
                         child: Container(
                           padding: const EdgeInsets.all(10),
                           child: Text(
@@ -138,10 +137,10 @@ class SearchBar extends StatelessWidget {
                           ),
                         ),
                       ),
-                    )
-                  ],
-                ),
-              )),
+                    ],
+                  ),
+                )),
+          ),
         ],
       )),
     );

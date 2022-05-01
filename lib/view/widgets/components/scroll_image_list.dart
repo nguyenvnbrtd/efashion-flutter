@@ -21,10 +21,20 @@ abstract class ScrollImageList<T> extends StatelessWidget {
   final List<T> items;
   final double? width;
   final double? height;
+  final double? radius;
   final Widget? child;
+  final List<Color>? gradientColors;
   OnItemTap<T>? _onItemTap;
 
-  ScrollImageList({Key? key, required this.items, this.width, this.child, this.height}) : super(key: key);
+  ScrollImageList({
+    Key? key,
+    required this.items,
+    this.width,
+    this.child,
+    this.height,
+    this.radius,
+    this.gradientColors,
+  }) : super(key: key);
 
   int current = 0;
   bool isFirst = true;
@@ -85,8 +95,8 @@ abstract class ScrollImageList<T> extends StatelessWidget {
       width: elementSize,
       height: height ?? 120,
       clipBehavior: Clip.hardEdge,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(radius ??20)),
       ),
       child: Stack(
         children: [
@@ -111,7 +121,7 @@ abstract class ScrollImageList<T> extends StatelessWidget {
               width: double.infinity,
               height: double.infinity,
               decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
+                gradient: LinearGradient(colors: gradientColors ?? [
                   Colors.black.withOpacity(0.55),
                   primaryColor.withOpacity(0.55)
                 ]),
@@ -133,7 +143,18 @@ abstract class ScrollImageList<T> extends StatelessWidget {
                             children: items.map((e) => IndicatorItem(width: indicatorSize)).toList()
                         ),
                         AnimatedPositioned(
-                          child: IndicatorItem(width: indicatorSize, height: 3),
+                          child: Container(
+                            child: IndicatorItem(width: indicatorSize, height: 3),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 1,
+                                    spreadRadius: 1,
+                                    color: Colors.white.withOpacity(0.4)
+                                )
+                              ],
+                            ),
+                          ),
                           duration: duration,
                           left: (indicatorPosition*(state+1) + indicatorSize*state ).toDouble(),
                         ),

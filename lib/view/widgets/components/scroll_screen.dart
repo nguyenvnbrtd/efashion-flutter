@@ -10,9 +10,11 @@ class ScrollScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = windowHeight(context);
+    double width = windowWidth(context);
 
     return Container(
         color: Colors.white,
+        width: width,
         height: height,
         child: SingleChildScrollView(
           child: child
