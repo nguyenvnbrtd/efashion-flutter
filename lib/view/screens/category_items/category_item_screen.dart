@@ -25,15 +25,6 @@ class CategoryItemScreen extends CartButtonBaseScreen {
   Widget body(BuildContext context) {
     double width = windowWidth(context);
 
-    final options = <ProductOption>[
-      const ProductOption(type: ClothTypes.ALL, name: 'All', id: 0),
-      const ProductOption(type: ClothTypes.DRESS, name: 'Dresses', id: 1),
-      const ProductOption(type: ClothTypes.TOP, name: 'Tops', id: 2),
-      const ProductOption(type: ClothTypes.SWEATER, name: 'Sweaters', id: 3),
-      const ProductOption(type: ClothTypes.JEAN, name: 'Jeans', id: 4),
-      const ProductOption(type: ClothTypes.COATS, name: 'Coats', id: 5),
-    ];
-
     final List<ProductItem> items = productItems.where((element) => element.categoryId == item.categoryId).toList();
 
     return BlocProvider<ProductItemListBloc>(

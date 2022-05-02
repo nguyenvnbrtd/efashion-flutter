@@ -2,6 +2,8 @@ import 'package:efashion/model/models/category_item.dart';
 import 'package:efashion/model/models/product_item.dart';
 import 'package:flutter/material.dart';
 
+import 'model/models/product_option.dart';
+
 // color
 
 const primaryColor = Color(0xffff6f01);
@@ -116,4 +118,13 @@ List<ProductItem> productItems = [
   ProductItem(productId: '22', categoryId: '8', type: ClothTypes.DRESS, price: 110, sale: 10, name: 'Tommy Hilfiger padded jackets - black with...', image: product6, imageDescription: [product6, product6, product6], description: 'Light blue jacket by Polo Ralph Lauren. Button neck with spread collar. Zip placket. Embroidered logo to chest and cuff Side pockets/ Elasticated hem. Regular fit. True to size. Model wears: UK S/ EU S/ US'),
   ProductItem(productId: '23', categoryId: '7', isInStock: true, type: ClothTypes.SWEATER, price: 39, sale: 30, name: 'Calvin Klein - lounge hoody with drawstring..', image: product7, imageDescription: [product7, product7, product7], description: 'Light blue jacket by Polo Ralph Lauren. Button neck with spread collar. Zip placket. Embroidered logo to chest and cuff Side pockets/ Elasticated hem. Regular fit. True to size. Model wears: UK S/ EU S/ US'),
   ProductItem(productId: '24', categoryId: '1', isInStock: true, type: ClothTypes.JEAN, price: 69, sale: 10, name: 'YSL cotton jumper - kashmir - beige ', image: product8, imageDescription: [product8, product8, product8], description: 'Light blue jacket by Polo Ralph Lauren. Button neck with spread collar. Zip placket. Embroidered logo to chest and cuff Side pockets/ Elasticated hem. Regular fit. True to size. Model wears: UK S/ EU S/ US'),
+];
+
+final options = <ProductOption>[
+  const ProductOption(type: ClothTypes.ALL, name: 'All', id: 0),
+  const ProductOption(type: ClothTypes.DRESS, name: 'Dresses', id: 1),
+  const ProductOption(type: ClothTypes.TOP, name: 'Tops', id: 2),
+  const ProductOption(type: ClothTypes.SWEATER, name: 'Sweaters', id: 3),
+  const ProductOption(type: ClothTypes.JEAN, name: 'Jeans', id: 4),
+  const ProductOption(type: ClothTypes.COATS, name: 'Coats', id: 5),
 ];

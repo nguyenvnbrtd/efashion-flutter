@@ -89,10 +89,22 @@ class SearchBar extends StatelessWidget {
             child: GestureDetector(
                 onTap: () {
                   showModalBottomSheet(
-                      context: context,
-                      builder: (context) {
-                        return const SearchPage();
-                      });
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (context) => Container(
+                      height: windowSize.height * 0.85,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius:  BorderRadius.only(
+                          topLeft: Radius.circular(25.0),
+                          topRight: Radius.circular(25.0),
+                        ),
+                      ),
+                      child: SearchPage(),
+                    )
+                  );
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
